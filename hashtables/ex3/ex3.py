@@ -4,8 +4,26 @@ def intersection(arrays):
     """
     # Your code here
 
-    return result
+    cache = {}
+    results = []
 
+    # nested for loop to go through the list of arrays
+    for array in arrays:
+        for i in array:
+            key = i
+            #if the key is not in the hash table - add it
+            if key not in cache:
+                cache[key] = 1
+            else:
+                #if key is in the hash table - add one
+                cache[key] += 1
+
+    #iterate over the hash table after it has been populated
+    for i in cache:
+        if cache[i] > 1:
+            #if the hash table has more than one item in it - append it to the results table
+            results.append(i)
+    return results
 
 if __name__ == "__main__":
     arrays = []
