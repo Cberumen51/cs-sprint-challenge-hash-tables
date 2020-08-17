@@ -5,24 +5,23 @@ def intersection(arrays):
     # Your code here
 
     cache = {}
+    # list where we add matching numbers
     results = []
 
-    # nested for loop to go through the list of arrays
-    for array in arrays:
-        for i in array:
-            key = i
-            #if the key is not in the hash table - add it
-            if key not in cache:
-                cache[key] = 1
+    # go through each list in array
+    for i in arrays:
+        # now we loop through the numbers 
+        for j in i:
+            # if the num is already in the cache of values we count them
+            if j in cache:
+                # increase count 
+                cache[j] += 1
+                # if num equals the length then we add it to results because we know it's in all lists
+                if cache[j] == len(arrays):
+                    results.append(j)
+            # otherwise we set it equal to 1
             else:
-                #if key is in the hash table - add one
-                cache[key] += 1
-
-    #iterate over the hash table after it has been populated
-    for i in cache:
-        if cache[i] > 1:
-            #if the hash table has more than one item in it - append it to the results table
-            results.append(i)
+                cache[j] = 1
     return results
 
 if __name__ == "__main__":
